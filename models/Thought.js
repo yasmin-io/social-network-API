@@ -35,6 +35,8 @@ thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
+// This will create the actual model for the schema
+// This will take the Schema variable name and the new model name
 const Thought = model("Thought", thoughtSchema);
 
 module.exports = Thought;

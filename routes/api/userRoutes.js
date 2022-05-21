@@ -1,5 +1,6 @@
 const router = require("express").Router();
-// Const destructure all the controller endpoint function names require from controller/userController
+
+// Destructure each method from controllers to use in the routes
 const {
   getAllUsers,
   createNewUser,
@@ -10,20 +11,17 @@ const {
   deleteFriend,
 } = require("../../controller/userController");
 
-//Example:
-// router.route('path').get(function).post(function)
+// Route '/' to either GET, PUT, DELETE or POST depending on the request
+// Then run the method provided in the controller.
 
-// Get all the users || Post a New User to the database
 router.route("/").get(getAllUsers).post(createNewUser);
 
-// Get, Update, Delete a single user by id
 router
   .route("/:userId")
   .get(getOneUser)
   .put(updateOneUser)
   .delete(deleteOneUser);
 
-// Get a particular user's friends
 router
   .route("/:userId/friends/:friendId")
   .post(addNewFriend)

@@ -4,10 +4,21 @@ const {
   getAllUsers,
   createNewUser,
   getOneUser,
+  deleteOneUser,
+  updateOneUser,
 } = require("../../controller/userController");
 
+//Example:
 // router.route('path').get(function).post(function)
+
+// Get all the users || Post a New User to the database
 router.route("/").get(getAllUsers).post(createNewUser);
-router.route("/:userId").get(getOneUser);
+
+// Get, Update, Delete a single user by id
+router
+  .route("/:userId")
+  .get(getOneUser)
+  .put(updateOneUser)
+  .delete(deleteOneUser);
 
 module.exports = router;

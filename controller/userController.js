@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const { User, Thought } = require("../models");
 
 const userController = {
@@ -53,6 +54,36 @@ const userController = {
     })
       .then((updatedUser) => {
         res.json(updatedUser);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
+
+  // Add New Friend to a particular users friend list
+  addNewFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true, runValidators: true }
+    )
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
+
+  // Delete a friend using an id
+  deleteFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
+      { new: true, runValidators: true }
+    )
+      .then((user) => {
+        res.json(user);
       })
       .catch((err) => {
         res.status(500).json(err);

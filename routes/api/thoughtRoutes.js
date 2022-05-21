@@ -7,6 +7,7 @@ const {
   getOneThought,
   updateThought,
   deleteThought,
+  createThoughtReaction,
 } = require("../../controller/thoughtsController");
 
 // Route '/' to either GET, PUT, DELETE or POST depending on the request
@@ -18,5 +19,7 @@ router
   .get(getOneThought)
   .put(updateThought)
   .delete(deleteThought);
+
+router.route("/:thoughtId/reactions").post(createThoughtReaction);
 
 module.exports = router;

@@ -84,6 +84,21 @@ const thoughtsController = {
         res.status(500).json(err);
       });
   },
+
+  // POST reaction on a single thought
+  createThoughtReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { new: true, runValidators: true }
+    )
+      .then((updatedThought) => {
+        res.json(updatedThought);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
 };
 
 module.exports = thoughtsController;

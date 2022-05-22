@@ -1,5 +1,5 @@
 const res = require("express/lib/response");
-const { User, Thought } = require("../models");
+const { User, Thought, Reaction } = require("../models");
 
 const thoughtsController = {
   // GET ALL thoughts

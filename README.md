@@ -28,7 +28,7 @@ The video will demonstrate the following:
 - POST and DELETE routes for a user's friend list
 - POST and DELETE routes for reactions to thoughts
 
-Click here for the Link to my Walkthrough Video: [Example]
+Click here for the Link to my Walkthrough Video: [WalkThrough](https://youtu.be/-0_7dR5rqgQ)
 
 ---
 

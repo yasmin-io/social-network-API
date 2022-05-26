@@ -99,6 +99,21 @@ const thoughtsController = {
         res.status(500).json(err);
       });
   },
+
+  // DELETE reaction by the reactions reactionId
+  deleteThoughtReaction(req, res) {
+    Thought.findByIdAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { new: true, runValidators: true }
+    )
+      .then((thought) => {
+        res.json(thought);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  },
 };
 
 module.exports = thoughtsController;
